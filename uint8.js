@@ -20,5 +20,14 @@ exports.uint8ToBuffer = function(array) {
 }
 
 exports.bufferToUint8 = function(buffer) {
-
+  // Fast reference.
+  if (buffer.parent.buffer) {
+    return new Uint8Array(buffer.parent.buffer, buffer.offset + buffer.parent.byteOffset, buffer.length)
+  }
+  // Memory copy.
+  var array = new Uint8Array(buffer.length)
+  // todo: test performace. for cycle is probably faster
+  array.set(Array.prototype.slice.call(buffer.parent, buffer.offset,
+    buffer.offset + buffer.length))
+  return array
 }
