@@ -4,7 +4,7 @@
   "description": "Convert between Uint8Array and Buffer without memory copy in Browserify.",
   "main": "uint8.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/browserify test/test.js | ./node_modules/.bin/testling"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,10 @@
     "browserify"
   ],
   "author": "Tõnis Tiigi <tonistiigi@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "tape": "~1.0.1",
+    "testling": "~1.0.0",
+    "browserify": "~2.13.2"
+  }
 }
