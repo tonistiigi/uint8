@@ -23,5 +23,18 @@
     "tape": "~1.0.1",
     "testling": "~1.0.0",
     "browserify": "~2.13.2"
+  },
+  "testling": {
+    "files": "test/test.js",
+    "browsers": {
+      "ie": [ 10 ],
+      "firefox": [ 18, 19, "nightly" ],
+      "chrome": [ 24, 25, "canary" ],
+      "safari": [ 5.1, 6 ],
+      "opera": [ 12 ],
+      "iphone": [ 6 ],
+      "ipad": [ 6 ],
+      "android-browser": [ 4.2 ]
+    }
   }
 }
