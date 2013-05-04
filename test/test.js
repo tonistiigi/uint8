@@ -74,3 +74,34 @@ test('from normal buffer(memory copy)', function(t) {
   t.equal(c[1], 4)
   t.end()
 })
+
+test('offsets are handled', function(t) {
+  t.plan(13)
+  var a1 = new Uint8Array(12)
+  var a2 = new Uint8Array(a1.buffer, 4, 8)
+
+  var b1 = uint8.uint8ToBuffer(a2)
+  var b2 = b1.slice(4)
+
+  var a3 = uint8.bufferToUint8(b2)
+
+  t.equal(a1.length, 12)
+  t.equal(a2.length, 8)
+  t.equal(a3.length, 4)
+  t.equal(b1.length, 8)
+  t.equal(b2.length, 4)
+
+  a1[8] = 7
+  t.equal(7, a2[4])
+  t.equal(7, b1.readUInt8(4))
+  t.equal(7, b2.readUInt8(0))
+  t.equal(7, a3[0])
+
+  b2.writeUInt8(8, 1)
+  t.equal(8, a1[9])
+  t.equal(8, a2[5])
+  t.equal(8, b1.readUInt8(5))
+  t.equal(8, a3[1])
+
+  t.end()
+})
