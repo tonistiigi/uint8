@@ -39,3 +39,11 @@ test('common buffer methods', function(t) {
   t.equal(b.readInt32LE(8), 2e9)
   t.end()
 })
+
+test('buffer.fill', function(t) {
+  t.plan(2)
+  b.fill(3)
+  t.equal(b.readUInt8(2), 3)
+  t.equal(a[5], 3)
+  t.end()
+})
