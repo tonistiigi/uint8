@@ -13,7 +13,7 @@ exports.uint8ToBuffer = function(array) {
                     'ArrayBuffer instances are allowed'))
   }
 
-  copy.__proto__ = Object.create(buffer.SlowBuffer.prototype)
+  copy.__proto__.__proto__ = Object.create(buffer.SlowBuffer.prototype)
   // todo: no __proto__ in IE10. workaround?
 
   return new buffer.Buffer(copy, copy.length, 0)
