@@ -1,6 +1,6 @@
 {
   "name": "uint8",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Convert between Uint8Array and Buffer without memory copy in Browserify.",
   "main": "uint8.js",
   "scripts": {
