@@ -36,5 +36,6 @@
       "ipad": [ 6 ],
       "android-browser": [ 4.2 ]
     }
-  }
+  },
+  "test" : "./node_modules/bin/browserify test/test.js | ./node_modules/bin/testling"
 }
