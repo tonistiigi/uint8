@@ -105,3 +105,28 @@ test('offsets are handled', function(t) {
 
   t.end()
 })
+
+test('Fast path for buffer.copy', function(t) {
+  t.plan(10)
+  var b1 = uint8.uint8ToBuffer(new Uint8Array([0, 1, 2, 3, 4]))
+  var b2 = uint8.uint8ToBuffer(new Uint8Array(5))
+
+  b1.copy(b2, 1, 2, 5)
+
+  t.equal(b2.readUInt8(0), 0)
+  t.equal(b2.readUInt8(1), 2)
+  t.equal(b2.readUInt8(2), 3)
+  t.equal(b2.readUInt8(3), 4)
+  t.equal(b2.readUInt8(4), 0)
+
+  // copy-over
+  b1.copy(b1, 2)
+
+  t.equal(b1.readUInt8(0), 0)
+  t.equal(b1.readUInt8(1), 1)
+  t.equal(b1.readUInt8(2), 0)
+  t.equal(b1.readUInt8(3), 1)
+  t.equal(b1.readUInt8(4), 2)
+
+  t.end()
+})

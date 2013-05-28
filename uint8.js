@@ -31,3 +31,5 @@ exports.bufferToUint8 = function(buffer) {
     buffer.offset + buffer.length))
   return array
 }
+
+require('./fastcopy')
