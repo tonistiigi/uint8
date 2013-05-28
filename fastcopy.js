@@ -1,4 +1,5 @@
 var buffer = require('buffer')
+var uint8 = require('./')
 
 var copy_ = buffer.Buffer.prototype.copy
 
@@ -47,3 +48,34 @@ buffer.Buffer.prototype.copy = function(target, target_start, start, end) {
     set(slice, this.parent.byteOffset + this.offset + target_start)
 }
 
+
+buffer.Buffer.concat = function (list, totalLength) {
+  // from toots/buffer-browserify
+  if (!Array.isArray(list)) {
+    throw new Error("Usage: Buffer.concat(list, [totalLength])\n \
+      list should be an Array.");
+  }
+
+  if (list.length === 0) {
+    return new Buffer(0);
+  } else if (list.length === 1) {
+    return list[0];
+  }
+
+  if (typeof totalLength !== 'number') {
+    totalLength = 0;
+    for (var i = 0; i < list.length; i++) {
+      var buf = list[i];
+      totalLength += buf.length;
+    }
+  }
+
+  var buffer = uint8.uint8ToBuffer(new Uint8Array(totalLength));
+  var pos = 0;
+  for (var i = 0; i < list.length; i++) {
+    var buf = list[i];
+    buf.copy(buffer, pos);
+    pos += buf.length;
+  }
+  return buffer;
+};

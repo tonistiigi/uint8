@@ -130,3 +130,22 @@ test('Fast path for buffer.copy', function(t) {
 
   t.end()
 })
+
+test('Fast path for buffer.copy', function(t) {
+  t.plan(7)
+  var b1 = uint8.uint8ToBuffer(new Uint8Array([0, 1]))
+  var b2 = uint8.uint8ToBuffer(new Uint8Array([2, 3, 4]))
+
+  var b = Buffer.concat([b1, b2])
+
+  t.equal(b.length, 5)
+  t.ok(!!b.parent.buffer)
+  t.equal(b.readUInt8(0), 0)
+  t.equal(b.readUInt8(1), 1)
+  t.equal(b.readUInt8(2), 2)
+  t.equal(b.readUInt8(3), 3)
+  t.equal(b.readUInt8(4), 4)
+
+  t.end()
+})
+
