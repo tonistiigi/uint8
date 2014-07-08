@@ -1,5 +1,7 @@
 [![browser support](https://ci.testling.com/tonistiigi/uint8.png)](https://ci.testling.com/tonistiigi/uint8)
 
+#### This module does not work any more with Browserifty 3.x and has been deprecated. Use [feross/typedarray-to-buffer](https://www.github.com/feross/typedarray-to-buffer) as an alternative or [chrisdickinson/bops](https://www.github.com/chrisdickinson/bops) as a better solution to this problem.
+
 ##Uint8
 
 Convert between [Uint8Array](https://developer.mozilla.org/en-US/docs/JavaScript/Typed_arrays/Uint8Array) and [Buffer](http://nodejs.org/api/buffer.html) without memory copy in [Browserify](https://github.com/substack/node-browserify).
